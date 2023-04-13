@@ -39,13 +39,11 @@ class Parcer():
                 # Getting rid of empty lines and last part like "source: youtu.be"
                 res['article'] = ' '.join([s for s in text_full.split('\n') if s][:-1])
 
-                if res['date'].year == self.year_search and count <= 20:
-                    # ArticleData.save(title=title, date=date, comments_amount=comments_amount, article=text_clear)
+                if res['date'].year == self.year_search:
                     self.articles_list.append(res)
                     print(count, end=' ')
                 else:
                     break
-
-            year_of_article = 2022  # temp solution to test small amounts
-            # year_of_article = date.year
+            print() # make a new line for checked articles counter
+            year_of_article = res['date'].year
             page_number += 1
