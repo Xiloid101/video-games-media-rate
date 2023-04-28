@@ -38,7 +38,7 @@ def rate_videogame_frequency(top):
         .annotate(Count('articledata'))\
         .order_by('-articledata__count')
 
-    print('Leaderboard of apeearance frequency:')
+    print('Leaderboard of appearance frequency:')
     for elem in rating[:top]:
         print(f"{elem.title}: {elem.articledata__count}")
 
@@ -56,8 +56,8 @@ def rate_videogame_discussions(top):
         print(f"{elem.title}: {elem.total_comments}")
 
 ArticleData.objects.all().delete()
-parcing_articles = Parcer(year_search=2023)
-parcing_articles.parce_4pda()
+parcing_articles = Parcer()
+parcing_articles.parce_4pda(2023, 4, 28)
 update_database_with_articles(parcing_articles.articles_list)
 
 videogame_titles = VideoGame.objects.all()
